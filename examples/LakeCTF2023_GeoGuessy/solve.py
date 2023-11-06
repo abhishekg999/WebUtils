@@ -4,7 +4,7 @@ sys.path.append('../')
 import WebUtils
 from WebUtils.HTTPSync import *
 from WebUtils.HTTPHost import https_host
-from WebUtils.JSCore import encodeURIComponent, he_encode
+from WebUtils.JSCore import js_encodeURIComponent as encodeURIComponent, he_encode
 from http.cookies import SimpleCookie
 import re
 from time import sleep
