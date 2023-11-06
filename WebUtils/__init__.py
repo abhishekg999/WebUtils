@@ -1,8 +1,35 @@
-HTTP_BASE_URL = None
+# just to make sure this doesnt mess up
+import grequests
+import requests
+from urllib.parse import urlparse, urljoin, ParseResult
 
-def setHTTPBaseURL(url: str):
-    global HTTP_BASE_URL
-    # assert valid blah blah
-    HTTP_BASE_URL = url.rstrip('/')
+DEFAULT_HTTP_SCHEME = "http"
+DEFAULT_WS_SCHEME = "ws"
+BASE_URL = None
 
-__all__ = ["HTTPSync", "HTTPAsync", "HTTPEncodings", "Utils", "JSCore", "Utils"]
+def setBaseURL(url: str):
+    """
+    Parses a http/https url and sets the HTTP scheme and BASE_URL for future use.
+    """
+    global BASE_URL, DEFAULT_HTTP_SCHEME, DEFAULT_WS_SCHEME
+    parsed_url = urlparse(url)
+    BASE_URL = parsed_url.netloc
+
+    match parsed_url.scheme:
+        case "http":
+            DEFAULT_HTTP_SCHEME = "http"
+            DEFAULT_WS_SCHEME = "ws"
+        case "https":
+            DEFAULT_HTTP_SCHEME = "https"
+            DEFAULT_WS_SCHEME = "wss"
+        case _:
+            pass
+
+
+def getHTTPURLFor(path: str):
+    return urljoin(f"{DEFAULT_HTTP_SCHEME}://{BASE_URL}", path)
+
+def getWSURLFor(path: str):
+    return urljoin(f"{DEFAULT_WS_SCHEME}://{BASE_URL}", path)
+
+__all__ = ["HTTPSync", "HTTPAsync", "HTTPEncodings", "JSCore", "HTTPHost"]

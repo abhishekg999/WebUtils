@@ -9,8 +9,8 @@ from http.cookies import SimpleCookie
 import re
 from time import sleep
 
-WebUtils.setHTTPBaseURL("https://chall.polygl0ts.ch:9011")
-# WebUtils.setHTTPBaseURL("http://localhost:9011")
+WebUtils.setBaseURL("https://chall.polygl0ts.ch:9011")
+# WebUtils.setBaseURL("http://localhost:9011")
 
 # res = get("/register")
 # token = res.cookies['token']

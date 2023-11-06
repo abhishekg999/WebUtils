@@ -1,4 +1,8 @@
-from urllib.parse import quote as encodeURIComponent
-from urllib.parse import unquote as decodeURIComponent
+from urllib.parse import quote as _quote
+from urllib.parse import unquote as _unquote
 
-__all__ = ['encodeURIComponent', 'decodeURIComponent']
+def encodeURIComponent(uriComponent):
+    return _quote(uriComponent, safe="!'()*")
+
+def decodeURIComponent(encodedURI):
+    return _unquote(encodedURI)
