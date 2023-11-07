@@ -1,6 +1,3 @@
-# just to make sure this doesnt mess up
-import grequests
-import requests
 from urllib.parse import urlparse, urljoin
 from functools import wraps
 

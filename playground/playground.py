@@ -1,12 +1,13 @@
 import sys
 sys.path.append('../')
 
-from WebUtils.HTTPTunnel import TCPTunnel
+
 from WebUtils.HTTPWebhook import WebHook
 from time import sleep
 
-with WebHook(4444) as WH:
-    print(WH.url)
+
+print(WebHook)
+with WebHook(4444) as W:
     sleep(30)
 
 print('done')
