@@ -32,4 +32,4 @@ def getHTTPURLFor(path: str):
 def getWSURLFor(path: str):
     return urljoin(f"{DEFAULT_WS_SCHEME}://{BASE_URL}", path)
 
-__all__ = ["HTTPSync", "HTTPAsync", "HTTPEncodings", "JSCore", "HTTPHost"]
+__all__ = ["HTTPSync", "HTTPAsync", "HTTPEncodings", "JSCore", "HTTPHost", "HTTPTunnel"]

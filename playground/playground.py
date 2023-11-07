@@ -1,12 +1,9 @@
 import sys
-sys.path.append("../")
+sys.path.append('../')
 
-import WebUtils
-from WebUtils.WSUtils import *
+from WebUtils.HTTPTunnel import TCPTunnel
+from time import sleep
 
-WebUtils.setBaseURL('http://chall.polygl0ts.ch:9010/')
-with WS("/ws", ) as ws:
-    print(ws.recv())
-    print(ws.recv())
-
-print("done")
+with TCPTunnel(4444) as t:
+    print(t.url())
+    sleep(20)
