@@ -12,7 +12,7 @@ def https_host(src : str) -> str:
     Returns url of hosted page.
     """
 
-    html = encodeURIComponent(src, safe="")
+    html = encodeURIComponent(src)
     return f"{HTTPS_HOST_URL}{html}"
 
 def http_host(src : str) -> str:
@@ -22,5 +22,5 @@ def http_host(src : str) -> str:
     Returns url of hosted page.
     """
 
-    html = encodeURIComponent(src, safe="")
+    html = encodeURIComponent(src)
     return f"{HTTP_HOST_URL}{html}"
