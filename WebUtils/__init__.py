@@ -1,7 +1,8 @@
 # just to make sure this doesnt mess up
 import grequests
 import requests
-from urllib.parse import urlparse, urljoin, ParseResult
+from urllib.parse import urlparse, urljoin
+from functools import wraps
 
 DEFAULT_HTTP_SCHEME = "http"
 DEFAULT_WS_SCHEME = "ws"
@@ -32,4 +33,5 @@ def getHTTPURLFor(path: str):
 def getWSURLFor(path: str):
     return urljoin(f"{DEFAULT_WS_SCHEME}://{BASE_URL}", path)
 
-__all__ = ["HTTPSync", "HTTPAsync", "HTTPEncodings", "JSCore", "HTTPHost", "HTTPTunnel", "WSUtils", "MiscUtils"]
+
+__all__ = ["HTTPSync", "HTTPAsync", "HTTPEncodings", "JSCore", "HTTPHost", "HTTPTunnel", "WSUtils", "MiscUtils", "HTTPWebhook"]
