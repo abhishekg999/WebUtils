@@ -57,7 +57,7 @@ class WebHook:
         self.process.join()
         self.process = None
 
-    def handleRequest(self) -> Generator[RequestData, None, None]:
+    def getRequestsSync(self) -> Generator[RequestData, None, None]:
         while True:
             request_data = self.requests.get()
             yield request_data

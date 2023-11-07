@@ -4,6 +4,8 @@ sys.path.append('../')
 import WebUtils
 from WebUtils.HTTPSync import *
 from WebUtils.HTTPHost import https_host
+from WebUtils.Websocket import SocketIO
+from WebUtils.HTTPWebhook import PublicHTTPWebHook
 from WebUtils.JSCore import js_encodeURIComponent as encodeURIComponent, he_encode
 from http.cookies import SimpleCookie
 import re
@@ -46,10 +48,16 @@ token = res.cookies['token']
 cookies_clean = {
     "token" : token
 }
-print(f"LOGIN TOKEN = {token}")
-print("Go to the website and login using this token.")
-print("After this, wait to recieve the admin username and paste when prompted.")
-input("Enter to continue.")
+
+with SocketIO('/') as io:
+    for event in io.getEventsSync():
+        if event[1] == 'auth':
+            io.emit('auth', token)
+        elif event[0] == 'notifications':
+            initial_notifications = event[1]
+            print(initial_notifications)
+
+sys.exit(1)
 
 _html = get("/", cookies=cookies_clean).text
 username_clean = re.search("<p>Hello (.*?)</p>", _html).group(1)
@@ -58,6 +66,7 @@ print(username_clean)
 get("/bot", params={
     "username": username_clean
 })
+
 
 admin_username = input("Admin Username: ").replace(' ', '')
 
