@@ -23,7 +23,6 @@ def setBaseURL(url: str):
         case _:
             pass
 
-
 def getHTTPURLFor(path: str):
     return urljoin(f"{DEFAULT_HTTP_SCHEME}://{BASE_URL}", path)
 

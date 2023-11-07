@@ -45,6 +45,8 @@ class SocketIOContext:
         self.sio = socketio.SimpleClient()
 
     def __enter__(self):
+        print(self.url)
+        print(self.ws_args)
         self.sio.connect(self.url, **self.ws_args)
         return self
 
