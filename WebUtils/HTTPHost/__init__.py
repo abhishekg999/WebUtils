@@ -21,6 +21,5 @@ def http_host(src : str) -> str:
     Hosts page on https://reflect-html.glitch.me/.
     Returns url of hosted page.
     """
-
     html = encodeURIComponent(src)
     return f"{HTTP_HOST_URL}{html}"

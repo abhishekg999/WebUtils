@@ -8,7 +8,6 @@ from WebUtils.Websocket import SocketIO
 from WebUtils.HTTPWebhook import RequestBinWebHook
 from WebUtils.HTTPEncodings import encodeURIComponent
 from WebUtils.JSCore import he_encode
-from http.cookies import SimpleCookie
 import re
 from time import sleep
 
