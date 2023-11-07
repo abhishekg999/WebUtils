@@ -2,12 +2,12 @@ import sys
 sys.path.append('../')
 
 
-from WebUtils.HTTPWebhook import WebHook
+from WebUtils.HTTPWebhook import PublicHTTPWebHook
 from time import sleep
 
-
-print(WebHook)
-with WebHook(4444) as W:
-    sleep(30)
+with PublicHTTPWebHook(4444) as W:
+    print(W.url)
+    for request in W.handleRequest():
+        print(request)
 
 print('done')

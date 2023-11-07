@@ -14,7 +14,7 @@ class NgrokTunnel:
             }
     
         self.listener = None
-
+    
     def __enter__(self):
         if self.listener:
             raise Exception("Context manager should not be entered with an already created ngrok listener.")
@@ -27,4 +27,3 @@ class NgrokTunnel:
 
 TCPTunnel = partial(NgrokTunnel, "tcp")
 HTTPTunnel = partial(NgrokTunnel, "http")
-UDPTunnel = partial(NgrokTunnel, "udp")
