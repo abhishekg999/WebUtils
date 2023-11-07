@@ -1,8 +1,11 @@
 import sys
 sys.path.append('../')
 
+import WebUtils
 from WebUtils.HTTPSync import *
 from WebUtils.HTTPHost import http_host
+
+WebUtils.setBaseURL('http://chall.polygl0ts.ch:9010/')
 
 src_html = """
 <body>
@@ -23,7 +26,7 @@ src_html = """
 url = http_host(src_html)
 print(url)
 
-res = post("http://chall.polygl0ts.ch:9010/submit", data={
+res = post("/submit", data={
     'url': url
 })
 

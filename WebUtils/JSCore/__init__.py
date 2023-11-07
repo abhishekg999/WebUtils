@@ -15,6 +15,3 @@ js_he = js_require('he')
 
 def he_encode(text, options=None):
     return js_he.encode(text, options)
-
-def he_encode(text, options=None):
-    return js_he.encode(text, options)
