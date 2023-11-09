@@ -8,7 +8,12 @@ from WebUtils.Webhook import RequestBinWebhook
 from WebUtils.Webhook import PublicHTTPWebhook
 
 
-with PublicHTTPWebhook() as host:
+with RequestBinWebhook('') as host:
     print(host.url)
     for e in host.getRequestsSync():
-        print(e)
+        if e['path'] == '/asdf':
+            break
+    
+    for e in host.getRequestsSync():
+        if e['path'] == '/1234':
+            break

