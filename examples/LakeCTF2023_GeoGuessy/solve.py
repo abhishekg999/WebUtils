@@ -59,7 +59,7 @@ with RequestBinWebhook('enbit6i3l2ra4') as hook:
         })
 
         notifications = None
-        for event in io.getEventsSync():
+        for event in io.get_events_sync():
             if event[1] == 'auth':
                 io.emit('auth', token)
             elif event[0] == 'notifications':
@@ -77,7 +77,7 @@ with RequestBinWebhook('enbit6i3l2ra4') as hook:
         "duelID" : chalId
     }, cookies=cookies)
 
-    for req in hook.getRequestsSync():
+    for req in hook.get_requests_sync():
         print(req)
         if req['body'].startswith('token='):
             admin_token = req['body'][6:]
@@ -126,7 +126,7 @@ with RequestBinWebhook('enbit6i3l2ra4') as hook:
         })
 
         notifications = None
-        for event in io.getEventsSync():
+        for event in io.get_events_sync():
             print(event)
             if event[1] == 'auth':
                 io.emit('auth', admin_token)
@@ -149,7 +149,7 @@ with RequestBinWebhook('enbit6i3l2ra4') as hook:
 
     print(res.text)
 
-    for req in hook.getRequestsSync():
+    for req in hook.get_requests_sync():
         latitude, longitude = req['body'].split(',')
         
 

@@ -51,7 +51,7 @@ class Webhook:
         self.process.join()
         self.process = None
 
-    def getRequestsSync(self) -> Generator[dict, None, None]:
+    def get_requests_sync(self) -> Generator[dict, None, None]:
         while True:
             request_data = self.requests.get()
             yield request_data
@@ -95,7 +95,7 @@ class RequestBinWebhook():
         self.sio.disconnect()
         self.sio.wait()
     
-    def getRequestsSync(self) -> Generator[dict, None, None]:
+    def get_requests_sync(self) -> Generator[dict, None, None]:
         while True:
             if self.requests:
                 request_data = self.requests.pop(0)

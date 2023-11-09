@@ -33,7 +33,7 @@ with RequestBinWebhook("enbit6i3l2ra4") as hook:
         'url': url
     })
 
-    for req in hook.getRequestsSync():
+    for req in hook.get_requests_sync():
         print(req['body'])
         break
 
