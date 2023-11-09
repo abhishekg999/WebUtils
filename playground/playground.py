@@ -4,9 +4,11 @@ sys.path.append('../')
 from WebUtils.Websocket import SocketIO
 from time import sleep
 from socketio import Client
-from WebUtils.HTTPWebhook import RequestBinWebHook
+from WebUtils.Webhook import RequestBinWebhook
+from WebUtils.Webhook import PublicHTTPWebhook
 
-with RequestBinWebHook("enbit6i3l2ra4") as bin:
-    print(bin.url)
-    for e in bin.getRequestsSync():
+
+with PublicHTTPWebhook() as host:
+    print(host.url)
+    for e in host.getRequestsSync():
         print(e)

@@ -2,7 +2,7 @@ import ngrok
 from functools import partial
 
 class NgrokTunnel:
-    def __init__(self, l_type, port, **options):
+    def __init__(self, l_type, port=4444, **options):
         self.port = port
         self.l_type = l_type
 

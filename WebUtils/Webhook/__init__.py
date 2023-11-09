@@ -12,8 +12,8 @@ logging.getLogger('werkzeug').disabled = True
 
 from typing import Generator, TypedDict, Dict
 
-class WebHook:
-    def __init__(self, port, **options):
+class Webhook:
+    def __init__(self, port=4444, **options):
         self.port = port
         self.options = options
         self.url = f"http://127.0.0.1:{self.port}"
@@ -35,7 +35,7 @@ class WebHook:
                 "cookies": dict(request.cookies), 
             }
             self.requests.put(request_data)
-            return f"{first}/{rest}"
+            return request.path
 
         def run_flask_app():
             app.run(host='127.0.0.1', port=self.port, debug=False, **self.options)
@@ -56,10 +56,10 @@ class WebHook:
             request_data = self.requests.get()
             yield request_data
 
-class PublicHTTPWebHook(WebHook):
-    def __init__(self, port, **options):
+class PublicHTTPWebhook(Webhook):
+    def __init__(self, port=4444, **options):
         super().__init__(port, **options)
-        from WebUtils.HTTPTunnel import TCPTunnel
+        from WebUtils.Tunnel import TCPTunnel
         self.tunnel = TCPTunnel(self.port)
       
     def __enter__(self):
@@ -72,7 +72,7 @@ class PublicHTTPWebHook(WebHook):
         super().__exit__(exc_type, exc_val, exc_tb)
         self.tunnel.__exit__(exc_type, exc_val, exc_tb)
         
-class RequestBinWebHook():
+class RequestBinWebhook():
     def __init__(self, api_key):
         self.api_key = api_key
         from socketio import Client
@@ -102,7 +102,4 @@ class RequestBinWebHook():
                 yield request_data
             else:
                 sleep(0.1)
-        
-
-
         

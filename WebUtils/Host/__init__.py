@@ -1,4 +1,4 @@
-from WebUtils.HTTPEncodings import encodeURIComponent
+from WebUtils.Encodings import encodeURIComponent
 
 __all__ = ["https_host"]
 

