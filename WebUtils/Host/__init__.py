@@ -1,4 +1,4 @@
-from WebUtils.Encodings import encodeURIComponent
+from WebUtils.Encodings import encodeURIComponentAll
 
 __all__ = ["https_host"]
 
@@ -12,7 +12,7 @@ def https_host(src : str) -> str:
     Returns url of hosted page.
     """
 
-    html = encodeURIComponent(src)
+    html = encodeURIComponentAll(src)
     return f"{HTTPS_HOST_URL}{html}"
 
 def http_host(src : str) -> str:
@@ -21,5 +21,5 @@ def http_host(src : str) -> str:
     Hosts page on https://reflect-html.glitch.me/.
     Returns url of hosted page.
     """
-    html = encodeURIComponent(src)
+    html = encodeURIComponentAll(src)
     return f"{HTTP_HOST_URL}{html}"
