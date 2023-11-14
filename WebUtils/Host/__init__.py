@@ -17,8 +17,8 @@ def https_host(src : str) -> str:
 
 def http_host(src : str) -> str:
     """
-    Takes an HTML source string, returns it hosted on a page with HTTPS enabled.
-    Hosts page on https://reflect-html.glitch.me/.
+    Takes an HTML source string, returns it hosted on a page with HTTP enabled.
+    Hosts page on http://reflect-html.glitch.me/.
     Returns url of hosted page.
     """
     html = encodeURIComponentAll(src)
